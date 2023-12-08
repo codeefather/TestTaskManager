@@ -22,6 +22,15 @@ public class Task {
         this.assignee = assignee;
     }
 
+    public Task(TaskInfo info){
+        this.title = info.getTitle();
+        this.description = info.getDescription();
+        this.status = info.getStatus();
+        this.priority = info.getPriority();
+        this.author = info.getAuthor();
+        this.assignee = info.getAssignee();
+    }
+
 
     public long getId() {
         return id;
@@ -31,7 +40,6 @@ public class Task {
         this.id = id;
     }
 
-    // Заголовок
     public String getTitle() {
         return title;
     }
@@ -40,7 +48,6 @@ public class Task {
         this.title = title;
     }
 
-    // Описание
     public String getDescription() {
         return description;
     }
@@ -49,8 +56,8 @@ public class Task {
         this.description = description;
     }
 
-    public String getStatus() {
-        return status;
+    public String getStatus(String status) {
+        return this.status;
     }
 
     public void setStatus(String status) {
@@ -65,7 +72,6 @@ public class Task {
         this.priority = priority;
     }
 
-    // Автор
     public User getAuthor() {
         return author;
     }

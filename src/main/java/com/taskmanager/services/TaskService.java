@@ -1,34 +1,48 @@
 package com.taskmanager.services;
 
-import com.taskmanager.interfaces.TaskRepository;
+import com.taskmanager.DTO.TaskDTO;
 import com.taskmanager.models.Task;
+import com.taskmanager.models.TaskInfo;
 
 import java.util.List;
 
 public class TaskService{
-    private TaskRepository taskRepository;
 
-    public TaskService(TaskRepository taskRepository) {
-        this.taskRepository = taskRepository;
+    private final TaskDTO taskDTO;
+
+
+    public TaskService(TaskDTO taskDTO) {
+        this.taskDTO = taskDTO;
     }
 
     public Task findTaskById(long id) {
-        return taskRepository.findById(id);
+        return taskDTO.findById(id);
     }
 
     public List<Task> findAllTasks() {
-        return taskRepository.findAll();
+        return taskDTO.findAll();
     }
 
-    public void createTask(Task task) {
-        taskRepository.save(task);
+    public Task createTask(TaskInfo info) {
+        Task task = new Task(info);
+        taskDTO.savaOrUpdate(task);
+        return task;
     }
 
-    public void updateTask(Task task) {
-        taskRepository.update(task);
+    public void updateTask(long id, TaskInfo info) {
+        Task task = taskDTO.findById(id);
+
+        task.setAssignee(info.getAssignee());
+        task.setAuthor(info.getAuthor());
+        task.setDescription(info.getDescription());
+        task.setPriority(info.getPriority());
+        task.setTitle(info.getTitle());
+        task.setStatus(info.getStatus());
+
+        taskDTO.savaOrUpdate(task);
     }
 
     public void deleteTaskById(long id) {
-        taskRepository.deleteById(id);
+        taskDTO.deleteById(id);
     }
 }

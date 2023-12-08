@@ -1,25 +1,11 @@
 package com.taskmanager.models;
 
-public class User {
+public class UserInfo {
+
     private long id;
     private String name;
     private String email;
     private String role;
-
-
-    public User() {
-
-    }
-
-    public User(String name, String email, String role) {
-        this.name = name;
-        this.email = email;
-        this.role = role;
-    }
-
-    public User(UserInfo info) {
-
-    }
 
     public long getId() {
         return id;
